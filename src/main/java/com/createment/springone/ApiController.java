@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//adding comment
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-    final String DB_HOST = "jdbc:mysql://localhost:3306/bookstore";
+    final String DB_HOST = "jdbc:mysql://192.168.1.191:3306/bookstore";
     final String DB_USER = "bookstoreuser";
     final String DB_PASS = "bookstorepassword";
 

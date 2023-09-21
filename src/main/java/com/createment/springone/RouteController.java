@@ -12,7 +12,7 @@ import java.util.Map;
 @Controller
 public class RouteController {
 
-    final String DB_HOST = "jdbc:mysql://localhost:3306/bookstore";
+    final String DB_HOST = "jdbc:mysql://192.168.1.191:3306/bookstore";
     final String DB_USER = "bookstoreuser";
     final String DB_PASS = "bookstorepassword";
 
