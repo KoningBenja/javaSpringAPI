@@ -1,5 +1,6 @@
 package com.createment.springone;
 
+import com.mysql.cj.xdevapi.Table;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -181,6 +182,18 @@ public class RouteController {
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+    }
+
+    @GetMapping("/booksV2Ed")
+    public String getLastBookV2(Model model) {
+        String sqlQuery = "SELECT * FROM books_v2 ORDER BY book_id DESC LIMIT 1";
+
+        TableData booksV2TableData = populateBooksV2Model(sqlQuery);
+
+        model.addAttribute("data", booksV2TableData.data);
+        model.addAttribute("tableName", booksV2TableData.tableName);
 
         return "table";
     }
