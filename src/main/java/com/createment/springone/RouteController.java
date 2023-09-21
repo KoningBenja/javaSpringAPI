@@ -86,6 +86,7 @@ public class RouteController {
                 Map<String, String> book = new HashMap<>();
 
                 book.put("title", title);
+                book.put("book_id", String.valueOf(id));
                 book.put("author_id", String.valueOf(authorId));
                 book.put("year", String.valueOf(year));
                 book.put("price", String.format("%.2f", price));
@@ -160,7 +161,7 @@ public class RouteController {
 
         return "table";
     }
-aa
+
     @GetMapping("/books")
     public String index(Model model) {
         String sqlQuery = "SELECT * FROM books";
@@ -174,10 +175,10 @@ aa
     }
 
     @GetMapping("/booksv2")
-    public String index(Model model) {
-        String sqlQuery = "SELECT * FROM books";
+    public String indexV2(Model model) {
+        String sqlQuery = "SELECT * FROM books_v2";
 
-        TableData booksTableData = populateBooksModel(sqlQuery);
+        TableData booksTableData = populateBooksV2Model(sqlQuery);
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
