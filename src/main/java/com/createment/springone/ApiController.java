@@ -78,6 +78,8 @@ public class ApiController {
         return booksTableData.data.values().stream().toList();
     }
 
+
+
     @PostMapping("/books")
     public ResponseEntity<String> setSingleBook(@RequestBody Map<String, String> book) {
         List<String> headings = new ArrayList<>();
