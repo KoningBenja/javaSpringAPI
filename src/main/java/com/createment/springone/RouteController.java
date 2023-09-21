@@ -160,9 +160,9 @@ public class RouteController {
 
         return "table";
     }
-aa
+
     @GetMapping("/books")
-    public String index(Model model) {
+    public String getBooks(Model model) {
         String sqlQuery = "SELECT * FROM books";
 
         TableData booksTableData = populateBooksModel(sqlQuery);
@@ -174,7 +174,7 @@ aa
     }
 
     @GetMapping("/booksv2")
-    public String index(Model model) {
+    public String getBooksV2(Model model) {
         String sqlQuery = "SELECT * FROM books";
 
         TableData booksTableData = populateBooksModel(sqlQuery);
