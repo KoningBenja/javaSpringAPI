@@ -1,6 +1,5 @@
 package com.createment.springone;
 
-import com.mysql.cj.xdevapi.Table;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -121,9 +120,9 @@ public class RouteController {
 
                 Map<String, String> book = new HashMap<>();
 
-                book.put("first_name", firstName);
-                book.put("last_name", lastName);
-                book.put("email", email);
+                book.put("knikkerbal", firstName);
+                book.put("ballebak", lastName);
+                book.put("kroepoekmandje", email);
 
                 customers.put(id, book);
             }
@@ -163,7 +162,7 @@ public class RouteController {
     }
 
     @GetMapping("/books")
-    public String getBooks(Model model) {
+    public String index(Model model) {
         String sqlQuery = "SELECT * FROM books";
 
         TableData booksTableData = populateBooksModel(sqlQuery);
@@ -175,8 +174,8 @@ public class RouteController {
     }
 
     @GetMapping("/booksv2")
-    public String getBooksV2(Model model) {
-        String sqlQuery = "SELECT * FROM books_v2";
+    public String indexV2(Model model) {
+        String sqlQuery = "SELECT * FROM books";
 
         TableData booksTableData = populateBooksModel(sqlQuery);
 
@@ -186,28 +185,21 @@ public class RouteController {
         return "table";
     }
 
-    @GetMapping("/booksv2/{id}")
-    public String showSpecificBookV2(Model model, @PathVariable String id) {
-        String sqlQuery = "SELECT * FROM books_v2 WHERE book_id = " + id;
+    @GetMapping("/booksv2/mostexpensive")
+    public String sortMostExpensive(Model model) {
+        String sqlQuery = "SELECT * FROM books_v2 ORDER BY price DESC LIMIT 1";
 
-        TableData booksTableData = populateBooksModel(sqlQuery);
+        TableData booksv2TableData = populateBooksV2Model(sqlQuery);
 
-        model.addAttribute("data", booksTableData.data);
-        model.addAttribute("tableName", booksTableData.tableName);
-
-        return "table";
-    }
-
-    @GetMapping("/booksV2Fancy")
-    public String getLastBookV2(Model model) {
-        String sqlQuery = "SELECT * FROM books_v2 ORDER BY year DESC LIMIT 1";
-
-        TableData booksV2TableData = populateBooksV2Model(sqlQuery);
-
-        model.addAttribute("data", booksV2TableData.data);
-        model.addAttribute("tableName", booksV2TableData.tableName);
+        model.addAttribute("value", booksv2TableData.data);
+        model.addAttribute("tableName", booksv2TableData.tableName);
 
         return "table";
+
+        //had to make changes
+
+
+
     }
 
     @GetMapping("/books/last")
