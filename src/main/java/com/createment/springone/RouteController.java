@@ -125,6 +125,16 @@ public class RouteController {
         return "table";
     }
 
+    @GetMapping("/customers/pig")
+    public String getPigCustomers(Model model) {
+        String sqlQuery = "SELECT CONCAT('Piggy ', 'Piggy '), first_name FROM customers";
+        TableData booksTableData = populateCustomersModel(sqlQuery);
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+    }
+
     @GetMapping("/books")
     public String index(Model model) {
         String sqlQuery = "SELECT * FROM books";
@@ -140,13 +150,11 @@ public class RouteController {
     @GetMapping("/books/last")
     public String showLastBook(Model model) {
         String sqlQuery = "SELECT * FROM books ORDER BY book_id DESC LIMIT 1";
-        System.out.println("Secret line, shh!");
 
         TableData booksTableData = populateBooksModel(sqlQuery);
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
-
 
         return "table";
     }
