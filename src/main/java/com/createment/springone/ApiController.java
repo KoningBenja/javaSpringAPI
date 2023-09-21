@@ -77,6 +77,18 @@ public class ApiController {
 
         return booksTableData.data.values().stream().toList();
     }
+    @GetMapping("/books/dabdab")
+    public List<Map<String, String>> retrieveBooks2() {
+        String sqlQuery = "SELECT * FROM books";
+
+        TableData booksTableData = populateBooksModel(sqlQuery);
+        System.out.println("PIG");
+
+        return booksTableData.data.values().stream().toList();
+    }
+
+
+
 
     @PostMapping("/books")
     public ResponseEntity<String> setSingleBook(@RequestBody Map<String, String> book) {
