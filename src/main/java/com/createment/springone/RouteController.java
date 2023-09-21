@@ -1,5 +1,6 @@
 package com.createment.springone;
 
+import com.mysql.cj.xdevapi.Table;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
@@ -82,6 +83,7 @@ public class RouteController {
                 int authorId = resultSet.getInt("author_id");
                 double price = resultSet.getDouble("price");
                 int year = resultSet.getInt("year");
+                String isbn = resultSet.getString("ISBN");
 
                 Map<String, String> book = new HashMap<>();
 
@@ -89,6 +91,8 @@ public class RouteController {
                 book.put("author_id", String.valueOf(authorId));
                 book.put("year", String.valueOf(year));
                 book.put("price", String.format("%.2f", price));
+                book.put("ISBN", isbn);
+                System.out.println("Chicken sandwich");
 
                 books.put(id, book);
             }
@@ -175,9 +179,9 @@ public class RouteController {
 
     @GetMapping("/booksv2")
     public String getBooksV2(Model model) {
-        String sqlQuery = "SELECT * FROM books";
+        String sqlQuery = "SELECT * FROM books_v2";
 
-        TableData booksTableData = populateBooksModel(sqlQuery);
+        TableData booksTableData = populateBooksV2Model(sqlQuery);
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
