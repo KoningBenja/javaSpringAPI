@@ -125,6 +125,18 @@ public class RouteController {
        return "table";
    }
 
+   @GetMapping ("/customers/2")
+   public String showSecondCustomer (Model model) {
+        String sqlQuery = "SELECT * FROM customers WHERE customer_id = 2";
+
+        TableData booksTableData = populateCustomersModel(sqlQuery);
+
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+   }
+
     @GetMapping("/books")
     public String index(Model model) {
         String sqlQuery = "SELECT * FROM books";
