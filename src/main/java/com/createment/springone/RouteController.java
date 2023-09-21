@@ -101,7 +101,7 @@ public class RouteController {
         return tableDataToReturn;
     }
 
-    @GetMapping("/customer")
+    @GetMapping("/customers")
     public String getCustomers(Model model) {
         String sqlQuery = "SELECT * FROM customers";
 
@@ -112,6 +112,26 @@ public class RouteController {
 
         return "table";
     }
+
+
+   @GetMapping ("/customers/last")
+           public String showLastCustomer (Model model) {
+       String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
+
+       TableData booksTableData = populateCustomersModel(sqlQuery);
+
+       model.addAttribute("data", booksTableData.data);
+       model.addAttribute("tableName", booksTableData.tableName);
+
+       return "table";
+   }
+
+   @GetMapping ("/customers/2")
+   public String showSecondCustomer (Model model) {
+        String sqlQuery = "SELECT * FROM customers WHERE customer_id = 2";
+
+        TableData booksTableData = populateCustomersModel(sqlQuery);
+
 
     @GetMapping("/customer/last")
     public String getLastCustomer(Model model) {
@@ -129,11 +149,12 @@ public class RouteController {
     public String getPigCustomers(Model model) {
         String sqlQuery = "SELECT CONCAT('Piggy ', 'Piggy '), first_name FROM customers";
         TableData booksTableData = populateCustomersModel(sqlQuery);
+
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
 
         return "table";
-    }
+
 
     @GetMapping("/books")
     public String index(Model model) {
