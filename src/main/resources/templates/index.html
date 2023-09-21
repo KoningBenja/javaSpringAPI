@@ -1,0 +1,26 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookstore</title>
+</head>
+<body>
+<h1>Bookstore</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.value.title}"></td>
+        <td th:text="${book.value.author}"></td>
+        <td th:text="${book.value.price}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

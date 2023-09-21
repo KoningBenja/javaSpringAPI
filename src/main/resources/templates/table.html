@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Table Details</title>
+</head>
+<body>
+<h1 th:text="${tableName}"></h1>
+<table>
+    <thead>
+    <tr th:if="${data.values().size() > 0}">
+        <div th:each="headings: ${data.values()[0].keySet()}">
+            <th th:text="${headings}"></th>
+        </div>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dataRows: ${data}">
+        <div th:each="dataColumns: ${dataRows.value.values()}">
+            <td th:text="${dataColumns}"></td>
+        </div>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

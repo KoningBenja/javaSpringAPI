@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Details</title>
+    <style>
+        body {
+            background-color: #f3f3f3;
+            font-size: 20px;
+            font-family: "Helvetica Neue", "Helvetica", sans-serif;
+            margin: 0;
+        }
+
+        .content {
+            max-width: 880px;
+            padding: 20px 10px 100px 10px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .book-detail .image {
+            text-align: center;
+        }
+
+        .book-detail .title {
+            line-height: 30px;
+            height: 90px;
+            overflow: hidden;
+        }
+
+        .book-detail .author {
+            display: block;
+            overflow: hidden;
+            width: 50%;
+            float: left;
+        }
+
+        .book-detail .price {
+            display: block;
+            float: right;
+            width: 50%;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="book-detail">
+        <div class="image">
+            <img src="https://picsum.photos/300/450" alt="Picture"/>
+        </div>
+        <h3 class="title" th:text="${title}">Title</h3>
+        <span class="author" th:text="${author}">Author</span>
+        <span class="price">Available for <b>&euro;<span th:text="${#numbers.formatDecimal(price,1,'POINT',2,'COMMA')}">0,00</span></b></span>
+        <div class="clear"><hr/></div>
+        <br/>
+        <div class="description">
+            The book '<span th:text="${title}">Title</span>' was written by '<span th:text="${author}">Author</span>'
+            and it's available with the ISBN number <span th:text="${isbn}">ISBN</span>.
+            The price is &euro;<span th:text="${#numbers.formatDecimal(price,1,'POINT',2,'COMMA')}">0,00</span>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+</div>
+</body>
+</html>
