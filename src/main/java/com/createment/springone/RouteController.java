@@ -67,6 +67,42 @@ public class RouteController {
         return tableDataToReturn;
     }
 
+    private TableData populateBooksV2Model(String sqlQuery) {
+        TableData tableDataToReturn = new TableData();
+        try {
+            ResultSet resultSet = runQuery(sqlQuery);
+
+            // Create a HashMap to hold the results
+            Map<Integer, Map<String, String>> books = new HashMap<>();
+
+            // Loop through the ResultSet and add each book to the HashMap
+            while (resultSet.next()) {
+                int id = resultSet.getInt("book_id");
+                String title = resultSet.getString("title");
+                int authorId = resultSet.getInt("author_id");
+                double price = resultSet.getDouble("price");
+                int year = resultSet.getInt("year");
+
+                Map<String, String> book = new HashMap<>();
+
+                book.put("title", title);
+                book.put("author_id", String.valueOf(authorId));
+                book.put("year", String.valueOf(year));
+                book.put("price", String.format("%.2f", price));
+
+                books.put(id, book);
+            }
+
+            // Add the HashMap to the model and return the Thymeleaf template name
+            tableDataToReturn.data = books;
+            tableDataToReturn.tableName = "Books_v2";
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return tableDataToReturn;
+    }
+
     private TableData populateCustomersModel(String sqlQuery) {
         TableData tableDataToReturn = new TableData();
         try {
@@ -179,18 +215,6 @@ public class RouteController {
         model.addAttribute("author", "Suzanne Collins");
         model.addAttribute("price", 5.09);
         model.addAttribute("isbn", "9780439023481");
-        return "table";
-    }
-
-    @GetMapping("/customer/last")
-    public String showLastCustomer(Model model) {
-        String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
-
-        TableData booksTableData = populateCustomersModel(sqlQuery);
-
-        model.addAttribute("data", booksTableData.data);
-        model.addAttribute("tableName", booksTableData.tableName);
-
         return "table";
     }
 
