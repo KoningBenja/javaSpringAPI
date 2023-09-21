@@ -152,7 +152,7 @@ public class RouteController {
 
     @GetMapping("/lastAuthor")
     public String showAuthor(Model model) {
-        String sqlQuery = "SELECT * FROM authors ORDER BY author_id DESC LIMIT1";
+        String sqlQuery = "SELECT * FROM authors ORDER BY author_id DESC LIMIT 1";
 
         TableData authorsTableData = populateBooksModel(sqlQuery);
 
