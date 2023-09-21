@@ -125,7 +125,7 @@ public class RouteController {
         return "table";
     }
 
-    @GetMapping("/books/last")
+    @GetMapping("/books/lastLast")
     public String showLastBook(Model model) {
         String sqlQuery = "SELECT * FROM books ORDER BY book_id DESC LIMIT 1";
 
