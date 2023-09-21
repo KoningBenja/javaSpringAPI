@@ -148,7 +148,7 @@ public class RouteController {
 
         return "table";
     }
-aa
+
     @GetMapping("/customer/last")
     public String getLastCustomer(Model model) {
         String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
@@ -160,8 +160,20 @@ aa
 
         return "table";
     }
-
+aa
     @GetMapping("/books")
+    public String index(Model model) {
+        String sqlQuery = "SELECT * FROM books";
+
+        TableData booksTableData = populateBooksModel(sqlQuery);
+
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+    }
+
+    @GetMapping("/booksv2")
     public String index(Model model) {
         String sqlQuery = "SELECT * FROM books";
 
