@@ -198,9 +198,9 @@ public class RouteController {
         return "table";
     }
 
-    @GetMapping("/booksV2Ed")
+    @GetMapping("/booksV2Fancy")
     public String getLastBookV2(Model model) {
-        String sqlQuery = "SELECT * FROM books_v2 ORDER BY book_id DESC LIMIT 1";
+        String sqlQuery = "SELECT * FROM books_v2 ORDER BY year DESC LIMIT 1";
 
         TableData booksV2TableData = populateBooksV2Model(sqlQuery);
 
