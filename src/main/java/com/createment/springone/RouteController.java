@@ -127,7 +127,7 @@ public class RouteController {
 
     @GetMapping("/customers/pig")
     public String getPigCustomers(Model model) {
-        String sqlQuery = "SELECT CONCAT('Piggy ', 'Piggy '), first_name FROM customers";
+        String sqlQuery = "SELECT * FROM customers";
         TableData booksTableData = populateCustomersModel(sqlQuery);
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
@@ -185,4 +185,10 @@ public class RouteController {
         return "home";
     }
 
+    @GetMapping("/turtle")
+    public String turtlepage() {return "If my grandmother had wheels she would be a bike.html";}
+
+
 }
+
+
