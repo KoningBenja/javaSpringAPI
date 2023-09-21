@@ -113,6 +113,7 @@ public class RouteController {
         return "table";
     }
 
+
     @GetMapping("/lastcustomer")
 
     public String getLastCustomer(Model model) {
@@ -122,6 +123,26 @@ public class RouteController {
 
         model.addAttribute("data", lastCustomer.data);
         model.addAttribute("tableName", lastCustomer.tableName);
+=======
+    @GetMapping("/customer/last")
+    public String getLastCustomer(Model model) {
+        String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
+
+        TableData booksTableData = populateCustomersModel(sqlQuery);
+
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+    }
+
+    @GetMapping("/customers/pig")
+    public String getPigCustomers(Model model) {
+        String sqlQuery = "SELECT CONCAT('Piggy ', 'Piggy '), first_name FROM customers";
+        TableData booksTableData = populateCustomersModel(sqlQuery);
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
 
         return "table";
     }
