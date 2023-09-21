@@ -77,6 +77,10 @@ public class ApiController {
 
         return booksTableData.data.values().stream().toList();
     }
+
+    public void dididid(){
+        System.out.println("didididididi");
+    }
     @GetMapping("/books/dabdab")
     public List<Map<String, String>> retrieveBooks2() {
         String sqlQuery = "SELECT * FROM books";
