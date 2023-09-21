@@ -148,7 +148,7 @@ public class RouteController {
 
         return "table";
     }
-aa
+
     @GetMapping("/customer/last")
     public String getLastCustomer(Model model) {
         String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
