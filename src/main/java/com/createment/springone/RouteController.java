@@ -160,7 +160,7 @@ public class RouteController {
 
         return "table";
     }
-aa
+
     @GetMapping("/books")
     public String index(Model model) {
         String sqlQuery = "SELECT * FROM books";
