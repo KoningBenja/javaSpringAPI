@@ -150,14 +150,14 @@ public class RouteController {
         return "table";
     }
 
-    @GetMapping("/lastAuthor")
+    @GetMapping("/secondCustomer")
     public String showAuthor(Model model) {
-        String sqlQuery = "SELECT * FROM authors ORDER BY author_id DESC LIMIT 1";
+        String sqlQuery = "SELECT * FROM customers WHERE customer_id = 2";
 
-        TableData authorsTableData = populateBooksModel(sqlQuery);
+        TableData customersTableData = populateCustomersModel(sqlQuery);
 
-        model.addAttribute("data", authorsTableData.data);
-        model.addAttribute("tableName", authorsTableData.tableName);
+        model.addAttribute("data", customersTableData.data);
+        model.addAttribute("tableName", customersTableData.tableName);
 
         return "table";
     }
