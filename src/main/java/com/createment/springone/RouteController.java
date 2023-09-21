@@ -159,6 +159,18 @@ public class RouteController {
         return "table";
     }
 
+    @GetMapping("/books/first")
+    public String showFirstBook(Model model) {
+        String sqlQuery = "SELECT * FROM books ORDER BY book_id ASC LIMIT 1";
+
+        TableData booksTableData = populateBooksModel(sqlQuery);
+
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+    }
+
     @GetMapping("/books/{id}")
     public String showSpecificBook(Model model, @PathVariable String id) {
         String sqlQuery = "SELECT * FROM books WHERE book_id = " + id;
@@ -177,6 +189,18 @@ public class RouteController {
         model.addAttribute("author", "Suzanne Collins");
         model.addAttribute("price", 5.09);
         model.addAttribute("isbn", "9780439023481");
+        return "table";
+    }
+
+    @GetMapping("/customer/last")
+    public String showLastCustomer(Model model) {
+        String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
+
+        TableData booksTableData = populateCustomersModel(sqlQuery);
+
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
         return "table";
     }
 
