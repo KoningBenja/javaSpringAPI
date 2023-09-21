@@ -113,7 +113,7 @@ public class RouteController {
         return "table";
     }
 
-   @GetMapping ("/customers/last")
+   @GetMapping ("/customer/last")
            public String showLastCustomer (Model model) {
        String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
 
@@ -125,7 +125,7 @@ public class RouteController {
        return "table";
    }
 
-   @GetMapping ("/customers/2")
+   @GetMapping ("/customer/2")
    public String showSecondCustomer (Model model) {
         String sqlQuery = "SELECT * FROM customers WHERE customer_id = 2";
 
