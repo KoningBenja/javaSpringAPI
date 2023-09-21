@@ -114,7 +114,7 @@ public class RouteController {
     }
 
     @GetMapping("/customer/last")
-    public String showLastCustomer(Model model) {
+    public String getLastCustomer(Model model) {
         String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
 
         TableData booksTableData = populateCustomersModel(sqlQuery);
@@ -149,15 +149,15 @@ public class RouteController {
         return "table";
     }
 
-    @GetMapping("/books/oldest")
-    public String showOldestBook(Model model) {
-        String sqlQuery = "SELECT * FROM books ORDER BY year LIMIT 1";
+    @GetMapping("/books/first")
+    public String showFirstBook(Model model) {
+        String sqlQuery = "SELECT * FROM books ORDER BY book_id ASC LIMIT 1";
 
         TableData booksTableData = populateBooksModel(sqlQuery);
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
-
+      
         return "table";
     }
 
@@ -179,6 +179,18 @@ public class RouteController {
         model.addAttribute("author", "Suzanne Collins");
         model.addAttribute("price", 5.09);
         model.addAttribute("isbn", "9780439023481");
+        return "table";
+    }
+
+    @GetMapping("/customer/last")
+    public String showLastCustomer(Model model) {
+        String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
+
+        TableData booksTableData = populateCustomersModel(sqlQuery);
+
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
         return "table";
     }
 
