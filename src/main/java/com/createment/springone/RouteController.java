@@ -174,7 +174,7 @@ aa
     }
 
     @GetMapping("/booksv2")
-    public String index(Model model) {
+    public String indexV2(Model model) {
         String sqlQuery = "SELECT * FROM books";
 
         TableData booksTableData = populateBooksModel(sqlQuery);
