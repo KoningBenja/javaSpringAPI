@@ -113,6 +113,19 @@ public class RouteController {
         return "table";
     }
 
+    @GetMapping("/lastcustomer")
+
+    public String getLastCustomer(Model model) {
+        String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
+
+        TableData lastCustomer = populateCustomersModel(sqlQuery);
+
+        model.addAttribute("data", lastCustomer.data);
+        model.addAttribute("tableName", lastCustomer.tableName);
+
+        return "table";
+    }
+
     @GetMapping("/books")
     public String index(Model model) {
         String sqlQuery = "SELECT * FROM books";
@@ -133,6 +146,18 @@ public class RouteController {
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+    }
+
+    @GetMapping("/lastAuthor")
+    public String showAuthor(Model model) {
+        String sqlQuery = "SELECT * FROM authors ORDER BY author_id DESC LIMIT1";
+
+        TableData authorsTableData = populateBooksModel(sqlQuery);
+
+        model.addAttribute("data", authorsTableData.data);
+        model.addAttribute("tableName", authorsTableData.tableName);
 
         return "table";
     }
