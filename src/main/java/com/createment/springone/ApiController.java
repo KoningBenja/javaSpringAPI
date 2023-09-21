@@ -23,6 +23,7 @@ public class ApiController {
         try {
             Connection conn = DriverManager.getConnection(DB_HOST, DB_USER, DB_PASS);
             Statement stmt = conn.createStatement();
+            System.out.println("lalalalal");
 
             // Execute a SQL query to get all books
             rs = stmt.executeQuery(query);
@@ -82,9 +83,14 @@ public class ApiController {
         String sqlQuery = "SELECT * FROM books";
 
         TableData booksTableData = populateBooksModel(sqlQuery);
+        System.out.println("Skkrt");
         System.out.println("PIG");
 
         return booksTableData.data.values().stream().toList();
+    }
+
+    public void Chaospooper(){
+        System.out.println("I want chaos");
     }
 
 
