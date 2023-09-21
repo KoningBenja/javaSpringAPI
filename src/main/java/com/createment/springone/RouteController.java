@@ -120,9 +120,9 @@ public class RouteController {
 
                 Map<String, String> book = new HashMap<>();
 
-                book.put("first_name", firstName);
-                book.put("last_name", lastName);
-                book.put("email", email);
+                book.put("knikkerbal", firstName);
+                book.put("ballebak", lastName);
+                book.put("kroepoekmandje", email);
 
                 customers.put(id, book);
             }
@@ -171,6 +171,35 @@ public class RouteController {
         model.addAttribute("tableName", booksTableData.tableName);
 
         return "table";
+    }
+
+    @GetMapping("/booksv2")
+    public String indexV2(Model model) {
+        String sqlQuery = "SELECT * FROM books";
+
+        TableData booksTableData = populateBooksModel(sqlQuery);
+
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+    }
+
+    @GetMapping("/booksv2/mostexpensive")
+    public String sortMostExpensive(Model model) {
+        String sqlQuery = "SELECT * FROM books_v2 ORDER BY price DESC LIMIT 1";
+
+        TableData booksv2TableData = populateBooksV2Model(sqlQuery);
+
+        model.addAttribute("value", booksv2TableData.data);
+        model.addAttribute("tableName", booksv2TableData.tableName);
+
+        return "table";
+
+        //had to make changes
+
+
+
     }
 
     @GetMapping("/books/last")
