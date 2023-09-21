@@ -185,6 +185,23 @@ public class RouteController {
         return "table";
     }
 
+    @GetMapping("/booksv2/mostexpensive")
+    public String sortMostExpensive(Model model) {
+        String sqlQuery = "SELECT * FROM books_v2 ORDER BY price DESC LIMIT 1";
+
+        TableData booksv2TableData = populateBooksV2Model(sqlQuery);
+
+        model.addAttribute("value", booksv2TableData.data);
+        model.addAttribute("tableName", booksv2TableData.tableName);
+
+        return "table";
+
+        //had to make changes
+
+
+
+    }
+
     @GetMapping("/books/last")
     public String showLastBook(Model model) {
         String sqlQuery = "SELECT * FROM books ORDER BY book_id DESC LIMIT 1";
