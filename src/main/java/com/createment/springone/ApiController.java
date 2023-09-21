@@ -23,7 +23,7 @@ public class ApiController {
         try {
             Connection conn = DriverManager.getConnection(DB_HOST, DB_USER, DB_PASS);
             Statement stmt = conn.createStatement();
-
+            chicken();
             // Execute a SQL query to get all books
             rs = stmt.executeQuery(query);
         } catch (SQLException e) {
@@ -37,6 +37,7 @@ public class ApiController {
         TableData tableDataToReturn = new TableData();
         try {
             ResultSet resultSet = runQuery(sqlQuery);
+            chicken();
 
             // Create a HashMap to hold the results
             Map<Integer, Map<String, String>> books = new HashMap<>();
@@ -87,7 +88,14 @@ public class ApiController {
         return booksTableData.data.values().stream().toList();
     }
 
+    public void chicken(){
+        System.out.println("Can i have one chicken sanwich please.");
+    }
 
+
+    //  here is a bunch of comments cus i have absolutely no idea what to do....
+    //someone... HELLLPPPUHHH MEEEE!
+    //PUHHHLEASSAAAAHHHH!!
 
 
 
@@ -103,6 +111,7 @@ public class ApiController {
         String sqlQuery = "INSERT INTO books (";
         for(int x = 0; x < headings.size(); x++) {
             sqlQuery += headings.get(x) + ", ";
+            chicken();
         }
         sqlQuery += ") VALUES (";
 
@@ -122,6 +131,7 @@ public class ApiController {
             prep.setDouble(4, Double.valueOf(values.get(3)));
             prep.setInt(5, Integer.valueOf(values.get(4)));
             prep.setString(6, values.get(5));
+            chicken();
 
             prep.executeUpdate();
         }catch (SQLException e){
