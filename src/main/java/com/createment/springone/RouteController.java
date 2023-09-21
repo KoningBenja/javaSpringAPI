@@ -112,6 +112,18 @@ public class RouteController {
 
         return "table";
     }
+    // some comment
+    @GetMapping("/customer/last")
+    public String showLastCustomer(Model model) {
+        String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
+
+        TableData booksTableData = populateCustomersModel(sqlQuery);
+
+        model.addAttribute("data", booksTableData.data);
+        model.addAttribute("tableName", booksTableData.tableName);
+
+        return "table";
+    }
 
     @GetMapping("/books")
     public String index(Model model) {
