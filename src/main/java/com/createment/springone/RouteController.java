@@ -113,17 +113,6 @@ public class RouteController {
         return "table";
     }
 
-
-    @GetMapping("/lastcustomer")
-
-    public String getLastCustomer(Model model) {
-        String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
-
-        TableData lastCustomer = populateCustomersModel(sqlQuery);
-
-        model.addAttribute("data", lastCustomer.data);
-        model.addAttribute("tableName", lastCustomer.tableName);
-
     @GetMapping("/customer/last")
     public String getLastCustomer(Model model) {
         String sqlQuery = "SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1";
@@ -132,17 +121,6 @@ public class RouteController {
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
-
-        return "table";
-    }
-
-    @GetMapping("/customers/pig")
-    public String getPigCustomers(Model model) {
-        String sqlQuery = "SELECT CONCAT('Piggy ', 'Piggy '), first_name FROM customers";
-        TableData booksTableData = populateCustomersModel(sqlQuery);
-        model.addAttribute("data", booksTableData.data);
-        model.addAttribute("tableName", booksTableData.tableName);
-
 
         return "table";
     }
@@ -171,16 +149,6 @@ public class RouteController {
         return "table";
     }
 
-
-    @GetMapping("/secondCustomer")
-    public String showAuthor(Model model) {
-        String sqlQuery = "SELECT * FROM customers WHERE customer_id = 2";
-
-        TableData customersTableData = populateCustomersModel(sqlQuery);
-
-        model.addAttribute("data", customersTableData.data);
-        model.addAttribute("tableName", customersTableData.tableName);
-
     @GetMapping("/books/first")
     public String showFirstBook(Model model) {
         String sqlQuery = "SELECT * FROM books ORDER BY book_id ASC LIMIT 1";
@@ -189,8 +157,7 @@ public class RouteController {
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
-
-
+      
         return "table";
     }
 
