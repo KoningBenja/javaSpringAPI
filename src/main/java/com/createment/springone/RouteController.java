@@ -120,9 +120,9 @@ public class RouteController {
 
                 Map<String, String> book = new HashMap<>();
 
-                book.put("first_name", firstName);
-                book.put("last_name", lastName);
-                book.put("email", email);
+                book.put("knikkerbal", firstName);
+                book.put("ballebak", lastName);
+                book.put("kroepoekmandje", email);
 
                 customers.put(id, book);
             }
