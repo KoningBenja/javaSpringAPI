@@ -175,9 +175,9 @@ public class RouteController {
 
     @GetMapping("/booksv2")
     public String getBooksV2(Model model) {
-        String sqlQuery = "SELECT * FROM books";
+        String sqlQuery = "SELECT * FROM books_v2";
 
-        TableData booksTableData = populateBooksModel(sqlQuery);
+        TableData booksTableData = populateBooksV2Model(sqlQuery);
 
         model.addAttribute("data", booksTableData.data);
         model.addAttribute("tableName", booksTableData.tableName);
